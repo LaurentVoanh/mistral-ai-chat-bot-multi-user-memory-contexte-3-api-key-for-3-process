@@ -1,0 +1,23 @@
+# HAL 2001 — Configuration LiteSpeed / Hostinger
+Options -Indexes
+
+# PHP Timeouts
+php_value max_execution_time 300
+php_value max_input_time 240
+php_value memory_limit 512M
+
+# Security: block direct DB access
+<Files "*.db">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Cache control for PHP
+<FilesMatch "\.php$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+</FilesMatch>
+
+# Protect sensitive files
+<Files "api.php">
+    Header set X-Robots-Tag "noindex"
+</Files>
